@@ -6,3 +6,6 @@ applications:
   instances: 1
   services:
   - tracker-registration-database
+  - tracker-service-registry
+  env:
+    TRUST_CERTS: api.sys.longs.pal.pivotal.io
