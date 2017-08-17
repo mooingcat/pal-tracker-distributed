@@ -22,24 +22,18 @@ run:
     - |
       export DEBIAN_FRONTEND="noninteractive"
       apt-get update
-
       apt-get install -y software-properties-common
       apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
       apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
       add-apt-repository 'deb http://ftp.osuosl.org/pub/mariadb/repo/10.2/ubuntu trusty main'
-
+      apt-get update
       apt-get -y install mariadb-server
       service mysql start
-
       cd pal-tracker
-
       mysql -uroot < databases/create_databases.sql
-
       ./gradlew testMigrate clean build || (service mysql stop && exit 1)
-
       cp applications/allocations-server/build/libs/allocations-server.jar ../build-output/allocations-server-`cat ../version/number`.jar
       cp applications/backlog-server/build/libs/backlog-server.jar ../build-output/backlog-server-`cat ../version/number`.jar
       cp applications/registration-server/build/libs/registration-server.jar ../build-output/registration-server-`cat ../version/number`.jar
       cp applications/timesheets-server/build/libs/timesheets-server.jar ../build-output/timesheets-server-`cat ../version/number`.jar
-
       service mysql stop
