@@ -20,11 +20,6 @@ run:
     - -exc
     # || mysql stop <-- this is used to ensure that we always stop mysql, and concourse detects failures correctly.
     - |
-    function stop_mysql {
-        service mysql stop
-      }
-      trap stop_mysql EXIT
-
       export DEBIAN_FRONTEND="noninteractive"
       apt-get update
 
