@@ -7,8 +7,6 @@ applications:
   env:
     TRUST_CERTS: api.sys.longs.pal.pivotal.io,uaa.sys.longs.pal.pivotal.io
     GRANT_TYPE: client_credentials
-    SECURITY_USER_NAME: actuator
-    SECURITY_USER_PASSWORD: operations4red
   services:
   - tracker-allocations-database
   - tracker-service-registry
